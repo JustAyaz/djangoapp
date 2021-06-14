@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'news/css/news.css' %}">
+    <script src="https://kit.fontawesome.com/18d4c57f2b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <aside>
+        <img src="{% static 'news/img/logo.svg' %}" alt="Logo">
+        <span class = "logo">JustAyaz</span>
+
+        <ul>
+            <a href="/"><li><i class="fas fa-home"></i> Home</li></a>
+            <a href="/all"><li><i class="fas fa-book"></i> All links</li></a>
+        </ul>
+
+    </aside>
+    <main>
+        <div class="row">
+            <div class="col-md">
+                <div class="card card-body">
+                    Links
+                </div>
+                <div class="card card-body">
+                    <table class="table">
+                        <tr>
+                            <th>Link</th>
+                            <th>My link</th>
+                            <th>Created at</th>
+                            <th>Usage</th>
+                            <th></th>
+                        </tr>
+
+                        {% for link in links %}
+
+                            <tr>
+                                <td>{{ link.link }}</td>
+                                <td><a href="{% url 'open_link' link.my_link %}">http://127.0.0.1:8000/{{ link.my_link }}</a></td>
+                                <td>{{ link.created_at }}</td>
+                                <td></td>
+                                <td><a href="{% url 'delete_link' link.id %}">Delete</a></td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

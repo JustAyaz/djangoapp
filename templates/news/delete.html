@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'news/css/news.css' %}">
+    <script src="https://kit.fontawesome.com/18d4c57f2b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <aside>
+        <img src="{% static 'news/img/logo.svg' %}" alt="Logo">
+        <span class = "logo">JustAyaz</span>
+
+        <ul>
+            <a href="/"><li><i class="fas fa-home"></i> Home</li></a>
+            <a href="/all/"><li><i class="fas fa-book"></i> All links</li></a>
+        </ul>
+
+    </aside>
+    <main>
+        <p>Are you sure you want to delete "{{ link }}?"</p>
+        <form action="{% url 'delete_link' link.id %}" method="post">
+            {% csrf_token %}
+            <a href="/all">Cancel </a>
+            <input type="submit" name="Confirm">
+        </form>
+    </main>
+</body>
+</html>

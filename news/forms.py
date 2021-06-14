@@ -7,19 +7,17 @@ import os
 
 class LinkForm(forms.Form):
     link = forms.CharField(max_length=100)
-    #my_link = forms.CharField(max_length=100)
-
-    #link.widget.attrs.update({'class': 'form-control'})
 
     def save(self):
         salt = os.urandom(32)
         l = self.cleaned_data['link']
         key = hashlib.pbkdf2_hmac('sha256',
-                                  l.encode('utf-8'),
+                                  l.encode('ASCII'),
                                   salt,
                                   10000,
                                   dklen=1)
+        k = hashlib.sha1(key).hexdigest()[:5]
         new_link = Links.objects.create(link=l,
-                                        my_link=key)
+                                        my_link=k)
         return new_link
 

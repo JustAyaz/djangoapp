@@ -1,9 +1,9 @@
 body{
-    background: antiquewhite;
+    background: white;
 }
 aside{
     float: left;
-    background: antiquewhite;
+    background: white;
     width: 20%;
     padding: 2.5%;
     height: 100vh;
@@ -46,4 +46,11 @@ aside ul li:hover, aside ul a:hover{
     color: darkgrey;
     text-decoration: none;
     transform: scale(1.05);
+}
+
+th, td {
+   border: 1px solid grey;
+}
+table {
+   border: 3px solid grey;
 }
