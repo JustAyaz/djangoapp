@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-md">
                 <div class="card card-body">
-                    Links
+                    Link
                 </div>
                 <div class="card card-body">
                     <table class="table">
@@ -32,20 +32,16 @@
                             <th>Link</th>
                             <th>My link</th>
                             <th>Created at</th>
-                            <th>Usage</th>
-                            <th></th>
                         </tr>
 
-                        {% for link in links %}
+
 
                             <tr>
                                 <td>{{ link.link }}</td>
                                 <td><a href="{% url 'open_link' link.my_link %}">http://127.0.0.1:8000/{{ link.my_link }}</a></td>
                                 <td>{{ link.created_at }}</td>
-                                <td>{{ link.count }}</td>
-                                <td><a href="{% url 'delete_link' link.id %}">Delete</a></td>
                             </tr>
-                        {% endfor %}
+
 
                     </table>
                 </div>

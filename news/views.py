@@ -20,14 +20,20 @@ class LinkCreate(View):
 
         if bound_form.is_valid():
             bound_form.save()
+            return redirect('all/')
 
         return render(request, 'news/index.html', context={'form': bound_form})
 
 
 def lib(request):
-    links = Links.objects.order_by('-created_at')
+    links = Links.objects.order_by('-count')
 
     return render(request, 'news/lib2.html', context={'links': links})
+
+
+def newLink(request):
+    links = Links.objects.order_by('-created_at')
+    return render(request, 'news/new_link.html', context={'links': links})
 
 
 def deleteOrder(request, pk):
@@ -41,6 +47,7 @@ def deleteOrder(request, pk):
 
 def openLink(request, key):
     link = Links.objects.get(my_link=key)
+    link.count = link.count+1
+    link.save()
     actual_link = link.link
-    print(key, actual_link)
     return redirect(actual_link)
