@@ -6,6 +6,7 @@ import os
 
 
 class LinkForm(forms.Form):
+    
     link = forms.CharField(max_length=100)
 
     def save(self):

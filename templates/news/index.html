@@ -1,10 +1,11 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'news/css/news.css' %}">
     <script src="https://kit.fontawesome.com/18d4c57f2b.js" crossorigin="anonymous"></script>
 </head>
@@ -22,18 +23,19 @@
     <main>
         <form action="" method="post">
             {% csrf_token %}
-            {% for field in form %}
-                <div class="form_group">
 
-                {% if field.errors %}
+                <div class="form-group">
+                {% if form.link.errors %}
                     <div class="alert alert-danger">
-                        {{ field.errors }}
+                        {{ form.link.errors }}
                     </div>
                 {% endif %}
-                    {{ field.label }}
-                    {{ field }}
+                    {% render_field form.link  class="input" placeholder="your link" %}
+                <small id="linkHelp" class="form-text text-muted">That link should exist</small>
+
+
                 </div>
-            {% endfor %}
+
 
             <button type="submit" class="btn btn-primary">Create Link</button>
         </form>
