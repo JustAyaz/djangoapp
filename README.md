@@ -1,3 +1,3 @@
-# Не сутулься
-"# djangoapp" 
+# Some sort of link shortener
+"# 
 
